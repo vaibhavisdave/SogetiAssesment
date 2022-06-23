@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.SogetiAssesmentBroker.controller;
+
+/**
+ * @author vighn
+ *
+ */
+public class BrokerControllerTest {
+
+}

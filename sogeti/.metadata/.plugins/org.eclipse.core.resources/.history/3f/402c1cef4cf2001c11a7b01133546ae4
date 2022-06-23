@@ -1,0 +1,80 @@
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "CAR")
+public class Car {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "car_id")
+	private Long id;
+
+	@ApiModelProperty(example = "model name", dataType = "String", required = true, value = "Car's model name")
+	@Column(name = "model", nullable = false)
+	private String model;
+
+	@ApiModelProperty(example = "make", dataType = "String", value = "Car's model name")
+	@Column(name = "make")
+	private String make;
+
+	@ApiModelProperty(example = "1", dataType = "Integer", value = "Car's version")
+	@Column(name = "version")
+	private int version;
+
+	@ApiModelProperty(example = "4", dataType = "Integer", value = "Nos. of doors car have.")
+	@Column(name = "noOfDoors")
+	private int noOfDoors;
+
+	@ApiModelProperty(example = "CO2Emission", dataType = "String", value = "CO2 Emission by the Car")
+	@Column(name = "co2Emission")
+	private String co2Emission;
+
+	@ApiModelProperty(example = "10000", dataType = "Long", required = true, value = "Car's gross price")
+	@Column(name = "grossPrice", nullable = false)
+	private long grossPrice;
+	
+	@ApiModelProperty(example = "1000", dataType = "Long", required = true, value = "Car's nett Price")
+	@Column(name = "nettPrice", nullable = false)
+	private long nettPrice;
+
+	@ApiModelProperty(example = "1000", dataType = "Long", required = true, value = "Car's mileage")
+	@Column(name = "mileage", nullable = false)
+	private long mileage;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "car_id")
+	private Lease lease;
+
+	public Car() {
+		super();
+	}
+
+	public Car(String model, String make, int version, int noOfDoors, String co2Emission, long grossPrice,
+			long mileage) {
+		super();
+		this.model = model;
+		this.make = make;
+		this.version = version;
+		this.noOfDoors = noOfDoors;
+		this.co2Emission = co2Emission;
+		this.grossPrice = grossPrice;
+		this.mileage = mileage;
+	}
+
+}

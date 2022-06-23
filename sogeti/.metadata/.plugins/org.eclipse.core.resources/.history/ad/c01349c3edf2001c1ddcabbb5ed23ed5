@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.service;
+
+import org.springframework.boot.test.context.SpringBootTest;
+
+/**
+ * @author vighn
+ *
+ */
+@SpringBootTest
+public class LeaseCompanyServiceTest {
+
+}

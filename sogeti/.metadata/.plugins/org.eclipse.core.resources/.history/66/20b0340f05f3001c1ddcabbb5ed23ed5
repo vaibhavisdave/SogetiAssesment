@@ -1,0 +1,99 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.SogetiAssesmentBroker.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.client.RestTemplate;
+
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
+import com.sogeti.asses.broker.sogetiAssesBroker.dao.BrokerRespository;
+import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
+import com.sogeti.asses.broker.sogetiAssesBroker.service.BrokerService;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
+
+/**
+ * @author vighn
+ *
+ */
+@SpringBootTest(classes = {com.sogeti.asses.broker.sogetiAssesBroker.controller.BrokerController.class})
+public class BrokerServiceTest {
+
+	@Autowired
+	BrokerService service;
+
+	@Test
+	void testCreate() {
+		Customer cust = new Customer("name", "street", 23, "123654", "place", "a@b.com", "123456");
+
+		long id = service.create(cust);
+		assertNotEquals(id, 0);
+	}
+	
+	@Test
+	void testCreateException() {
+		Customer cust = new Customer(null, "street", 23, "123654", "place", "a@b.com", "123456");
+
+		 Assertions.assertThrows(DataIntegrityViolationException.class,() -> {service.create(cust);});
+	}
+	
+	@Test
+	void testUpdate() {
+		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		car.setLeaseRate();
+		long id = service.create(car);
+		Car carEdit = new Car("ModelUpdated", "", 0, 2, "", 100.00, 10, 60, 7, "", 0.9, 0);
+		carEdit.setLeaseRate();
+		carEdit.setId(id);
+		Car carUpdate = service.update(carEdit,id);
+		assertEquals(carEdit, carUpdate);
+	}
+	
+	@Test
+	void testUpdateException() {
+		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		car.setLeaseRate();
+		long id = service.create(car);
+		Car carUpdate = service.update(car,id+1);
+		assertNull(carUpdate);
+	}
+	
+	@Test
+	void testFind() {
+
+		List<Car>cars =service.findAll();
+		assertNotNull(cars);
+		assertEquals(cars.size(),1);
+		Optional<Car> car = service.findById(1);
+		assertNotNull(car);
+		assertNotNull(car.get());
+		assertEquals(car.get().getId(), 1);
+		
+	}
+	
+	@Test
+	void testDelete() {
+
+		service.deleteById(1L);
+		Assertions.assertThrows(NoSuchElementException.class,() -> {service.findById(1L).get();});
+		
+	}
+}

@@ -1,0 +1,33 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
+
+/**
+ * @author vighn
+ *
+ */
+@SpringBootTest
+public class LeaseCompanyServiceTest {
+
+	@Autowired
+	LeaseCompanyService service;
+
+	@Test
+	void testSubscriptionMessage() {
+
+		String user = "Peter";
+Car car = new Car();
+		String message = service.create(new C);
+		assertEquals("Hello " + user + ", Thanks for the subscription!", message);
+	}
+}

@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.service;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * @author vighn
+ *
+ */
+@Service
+public class BrokerService {
+
+}

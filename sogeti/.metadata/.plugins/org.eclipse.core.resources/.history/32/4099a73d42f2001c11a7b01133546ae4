@@ -1,0 +1,37 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.sogeti.asses.broker.sogetiAssesBroker.dao.BrokerRespository;
+import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
+
+/**
+ * @author vighn
+ *
+ */
+@Service
+public class BrokerService {
+	
+	@Autowired
+	private BrokerRespository demoRepository;
+
+	public long create(Customer customer) {
+		return demoRepository.save(customer).getId();
+	}
+
+	public long update(Customer customer,  @PathVariable long id) {
+		Optional<Customer> oldCustOpt = demoRepository.findById(id);
+		if(oldCust.isPresent()) {
+			oldCustOpt.get()
+		}
+		return demoRepository.save(customer).getId();
+	}
+
+}

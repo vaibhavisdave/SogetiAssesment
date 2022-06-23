@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="LeaseCompanyServiceTest" project="SogetiAssesmentLeaseCompany" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.service.LeaseCompanyServiceTest" time="0.188" displayname="LeaseCompanyServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.service.LeaseCompanyServiceTest]">
+    <testcase name="testSubscriptionMessage" classname="com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.service.LeaseCompanyServiceTest" time="0.188" displayname="testSubscriptionMessage()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.service.LeaseCompanyServiceTest]/[method:testSubscriptionMessage()]"/>
+  </testsuite>
+</testrun>

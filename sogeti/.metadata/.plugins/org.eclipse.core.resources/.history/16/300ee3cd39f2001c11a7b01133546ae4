@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.dao;
+
+import org.springframework.stereotype.Repository;
+
+/**
+ * @author vighn
+ *
+ */
+@Repository
+public interface BrokerRespository {
+
+}

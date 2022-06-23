@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.SogetiAssesmentBroker.controller;
+
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+
+/**
+ * @author vighn
+ *
+ */
+@SpringBootTest(classes = {com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.SogetiAssesmentLeaseCompanyApplication.class})
+@AutoConfigureMockMvc
+public class BrokerControllerTest {
+
+}

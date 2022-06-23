@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.controller.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+
+/**
+ * @author vighn
+ *
+ */
+public interface LeaseComapnyDao extends JpaRepository<Car, Long>{
+
+}

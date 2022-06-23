@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity;
+
+/**
+ * @author vighn
+ *
+ */
+public class Lease {
+
+}

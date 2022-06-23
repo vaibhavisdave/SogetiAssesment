@@ -1,0 +1,32 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+
+/**
+ * @author vighn
+ *
+ */
+@RestController
+public class BrokerController {
+
+	@Autowired
+	BrokerService service;
+	
+	@ApiOperation(value = "Creates Article object.")
+	@ApiResponse(code = 200, message = "Article created successfully")
+	@PostMapping(value = "/save", produces = "application/vnd.demo.app-v1.0+json")
+	public long save() {
+		return service
+				.create(ArticleDTO.builder().title("Title1").content("Content1").tags(List.of("tag1", "tag2")).build());
+	}
+}

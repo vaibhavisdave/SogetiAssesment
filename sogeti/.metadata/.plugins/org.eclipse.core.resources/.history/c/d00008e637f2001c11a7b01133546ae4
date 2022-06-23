@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.dao;
+
+/**
+ * @author vighn
+ *
+ */
+public interface BrokerRespository {
+
+}

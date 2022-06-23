@@ -1,0 +1,30 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
+
+import lombok.Data;
+
+/**
+ * @author vighn
+ *
+ */
+@Data
+@Entity
+@Table(name = "LEASE")
+public class Lease {
+
+	@Id
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Long id;
+}

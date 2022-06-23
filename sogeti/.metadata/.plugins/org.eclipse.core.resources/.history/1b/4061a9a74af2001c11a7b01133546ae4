@@ -1,0 +1,50 @@
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.controller.dao.LeaseComapnyDao;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+
+public class LeaseCompanyService {
+	
+	@Autowired
+	LeaseComapnyDao comapnyDao;
+
+	public long create(Car car) {
+		return comapnyDao.save(car).getId();
+	}
+
+	public Car update(Car car, long id) {
+		Customer oldCust =null;
+		Optional<Customer> oldCustOpt = demoRepository.findById(id);
+		if(oldCustOpt.isPresent()) {
+			oldCust = oldCustOpt.get();
+			oldCust.setEmail(customer.getEmail());
+			oldCust.setHouseNo(customer.getHouseNo());
+			oldCust.setName(customer.getName());
+			oldCust.setPhNumber(customer.getPhNumber());
+			oldCust.setPlace(customer.getPlace());
+			oldCust.setStreet(customer.getStreet());
+			oldCust.setZipCode(customer.getZipCode());	
+			oldCust = demoRepository.save(oldCust);
+		}
+		return oldCust;
+	}
+
+	public List<Car> findAll() {
+		return comapnyDao.findAll();
+	}
+
+	public Optional<Car> findById(long id) {
+		return comapnyDao.findById(id);
+	}
+
+	public void deleteById(long id) {
+		comapnyDao.deleteById(id);
+	}
+
+}

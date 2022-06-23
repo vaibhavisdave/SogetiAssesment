@@ -1,0 +1,39 @@
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.controller.dao.LeaseComapnyDao;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+
+public class LeaseCompanyService {
+	
+	@Autowired
+	LeaseComapnyDao comapnyDao;
+
+	public long create(Car car) {
+		return comapnyDao.save(car).getId();
+	}
+
+	public Car update(Car car, long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Car> findAll() {
+		return comapnyDao.findAll();
+	}
+
+	public Optional<Car> findById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deleteById(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

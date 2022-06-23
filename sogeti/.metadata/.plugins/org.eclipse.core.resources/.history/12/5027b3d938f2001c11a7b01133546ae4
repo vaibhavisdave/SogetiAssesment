@@ -1,0 +1,69 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.entity;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.springframework.core.metrics.StartupStep.Tags;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+/**
+ * @author vighn
+ *
+ */
+@Data
+@Entity
+@Table(name = "ARTICLES")
+public class Customer {
+
+	@Id
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Long id;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "title")
+	private String name;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "title")
+	private String name;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "title")
+	private String street;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "title")
+	private String houseNumber;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "title")
+	private String zipCode;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "title")
+	private String place;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "title")
+	private String email;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "title")
+	private String phNumber;
+	
+}

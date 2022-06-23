@@ -1,0 +1,25 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.service;
+
+import org.springframework.stereotype.Service;
+
+import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
+
+/**
+ * @author vighn
+ *
+ */
+@Service
+public class BrokerService {
+	
+	@Autowired
+	private ArticlesRepository demoRepository;
+
+	public long create(Customer customer) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

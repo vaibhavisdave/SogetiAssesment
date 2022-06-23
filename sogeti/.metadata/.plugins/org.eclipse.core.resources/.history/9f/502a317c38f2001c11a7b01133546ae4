@@ -1,0 +1,59 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.entity;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.springframework.core.metrics.StartupStep.Tags;
+
+import lombok.Data;
+
+/**
+ * @author vighn
+ *
+ */
+@Data
+@Entity
+@Table(name = "ARTICLES")
+public class Customer {
+
+	@Id
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Long id;
+	
+	@ApiModelProperty(example = "Article title", dataType = "String", required = true,value = "Title for the article")
+	@Column(name = "title")
+	private String title;
+	
+	@ApiModelProperty(example = "Article content", dataType = "String", required = true,value = "Type of content for the article")
+	@Column(name = "content")
+	private String content;
+	
+	@ApiModelProperty(example = "Tags", dataType = "String", required = true, value = "List of tags for articles")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "article_id")
+	private List<Tags> tags;
+
+	public Articles(String title, String content, List<Tags> tags) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.tags = tags;
+	}
+
+	public Articles() {
+		super();
+	}
+}

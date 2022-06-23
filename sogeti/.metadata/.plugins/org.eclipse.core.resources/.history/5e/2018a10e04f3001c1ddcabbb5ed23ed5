@@ -1,0 +1,112 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.SogetiAssesmentBroker.controller;
+
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
+import com.sogeti.asses.broker.sogetiAssesBroker.service.BrokerService;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
+
+/**
+ * @author vighn
+ *
+ */
+@SpringBootTest(classes = {com.sogeti.asses.broker.sogetiAssesBroker.controller.BrokerController.class})
+@AutoConfigureMockMvc
+public class BrokerControllerTest {
+	@MockBean
+	BrokerService service;
+	
+	@Autowired
+	MockMvc mvc;
+	
+	@Autowired
+	  private ObjectMapper objectMapper;
+	
+	@Test
+	void testCreate() throws JsonProcessingException, Exception  {
+		Customer cust = new Customer("name", "street", 23, "123654", "place", "a@b.com", "123456");
+		
+		
+	
+	
+		this.place = place;
+		this.email = email;
+		this.phNumber = phNumber;
+		car.setLeaseRate();
+		when(service.create(car)).thenReturn(1l);
+		mvc.perform(post("/add").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(car)))
+		.andExpect(result ->{
+			MockMvcResultMatchers.status().is(200);
+			MockMvcResultMatchers.jsonPath("$.data").value(1);
+		} );
+	}
+	
+	@Test
+	void testUpdate() throws JsonProcessingException, Exception  {
+		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		car.setId(1l);
+		car.setLeaseRate();
+		when(service.update(car,1)).thenReturn(car);
+		mvc.perform(post("/update/1").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(car)))
+				.andExpect(result ->{
+					MockMvcResultMatchers.status().is(200);
+					MockMvcResultMatchers.jsonPath("$.data").value(car);
+				} );
+	}
+	
+	@Test
+	void testFind() throws JsonProcessingException, Exception  {
+		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		car.setId(1l);
+		car.setLeaseRate();
+		when(service.findAll()).thenReturn(List.of(car));
+		mvc.perform(post("/find").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(result ->{
+					MockMvcResultMatchers.status().is(200);
+					MockMvcResultMatchers.jsonPath("$.data").isNotEmpty();
+					MockMvcResultMatchers.model().size(1);
+				} );
+		when(service.findById(1l)).thenReturn(Optional.of(car));
+		mvc.perform(post("/find/1").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(result ->{
+					MockMvcResultMatchers.status().is(200);
+					MockMvcResultMatchers.jsonPath("$.data").isNotEmpty();
+					MockMvcResultMatchers.jsonPath("$.data").value(car);;
+				} );
+	}
+
+	@Test
+	void testDelete() throws JsonProcessingException, Exception  {
+		doNothing().when(service).deleteById(1);
+		mvc.perform(post("/delete/1").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(result ->{
+					MockMvcResultMatchers.status().is(200);
+					MockMvcResultMatchers.jsonPath("$.data").value("Car deleted successfully");
+				} );
+	}
+
+	
+
+}

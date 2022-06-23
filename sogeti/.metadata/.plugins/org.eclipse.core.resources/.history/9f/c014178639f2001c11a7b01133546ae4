@@ -1,0 +1,65 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.entity;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.springframework.core.metrics.StartupStep.Tags;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+/**
+ * @author vighn
+ *
+ */
+@Data
+@Entity
+@Table(name = "ARTICLES")
+public class Customer {
+
+	@Id
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Long id;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "name", nullable = false)
+	private String name;
+		
+	@ApiModelProperty(example = "street", dataType = "String", value = "Street name for customer address")
+	@Column(name = "street")
+	private String street;
+	
+	@ApiModelProperty(example = "1", dataType = "Integer", value = "House no.of customer address")
+	@Column(name = "houseNumber")
+	private int houseNumber;
+	
+	@ApiModelProperty(example = "1111", dataType = "String", value = "Zip code of customer address")
+	@Column(name = "zipCode")
+	private String zipCode;
+	
+	@ApiModelProperty(example = "Utrecht", dataType = "String",value = "Place of customer address")
+	@Column(name = "place")
+	private String place;
+	
+	@ApiModelProperty(example = "a@b.com", dataType = "String", required = true,value = "Customer email address")
+	@Column(name = "email")
+	private String email;
+	
+	@ApiModelProperty(example = "Customer name", dataType = "String", required = true,value = "Customer name")
+	@Column(name = "title")
+	private String phNumber;
+	
+}

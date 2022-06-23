@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author vighn
+ *
+ */
+@RestController
+public class BrokerController {
+
+}

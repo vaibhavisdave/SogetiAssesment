@@ -1,0 +1,5 @@
+INSERT INTO CUSTOMER (name,phNumber,email) VALUES('Vaibhavi','123456','v@t.com');
+INSERT INTO CUSTOMER (name,phNumber,email) VALUES('Dave','123456','v@t.com');
+INSERT INTO CUSTOMER (name,phNumber,email) VALUES('Vaibhavi','123456','v@t.com');
+INSERT INTO CUSTOMER (name,phNumber,email) VALUES('Vaibhavi','123456','v@t.com');
+INSERT INTO CUSTOMER (name,phNumber,email) VALUES('Vaibhavi','123456','v@t.com');

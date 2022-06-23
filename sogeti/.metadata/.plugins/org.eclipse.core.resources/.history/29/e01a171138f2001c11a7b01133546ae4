@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.entity;
+
+/**
+ * @author vighn
+ *
+ */
+@Data
+@Entity
+@Table(name = "ARTICLES")
+public class Customer {
+
+}

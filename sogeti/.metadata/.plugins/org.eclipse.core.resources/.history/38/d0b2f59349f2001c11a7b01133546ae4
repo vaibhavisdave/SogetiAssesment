@@ -1,0 +1,51 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity;
+
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+/**
+ * @author vighn
+ *
+ */
+@Data
+@Entity
+@Table(name = "LEASE")
+public class Lease {
+
+	@Id
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Long id;
+	
+	@ApiModelProperty(example = "12", dataType = "Long", required = true,value = "The number of months in the contract")
+	@Column(name = "duration", nullable = false)
+	private long duration;
+	
+	@ApiModelProperty(example = "12-06-2022", dataType = "Date", required = true,value = "Contract Start Date")
+	@Column(name = "startDate", nullable = false)
+	private Date startDate;
+	
+	@ApiModelProperty(example = "1000", dataType = "Long", required = true,value = "Car's mileage")
+	@Column(name = "mileage", nullable = false)
+	private long mileage;
+	
+	@ApiModelProperty(example = "1000", dataType = "Long", required = true,value = "Car's mileage")
+	@Column(name = "mileage", nullable = false)
+	private long mileage;
+	
+	@ApiModelProperty(example = "1000", dataType = "Long", required = true,value = "Car's mileage")
+	@Column(name = "mileage", nullable = false)
+	private long mileage;
+}

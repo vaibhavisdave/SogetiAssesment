@@ -1,0 +1,18 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.controller;
+
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.controller.LeaseCompanyController;
+
+/**
+ * @author vighn
+ *
+ */
+@WebMvcTest(controllers = LeaseCompanyController.class)
+public class LeaseCompanyControllerTest {
+	
+
+}

@@ -1,0 +1,65 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
+
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
+
+/**
+ * @author vighn
+ *
+ */
+@SpringBootTest(classes = {com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.SogetiAssesmentLeaseCompanyApplication.class})
+public class LeaseCompanyServiceTest {
+
+	@Autowired
+	LeaseCompanyService service;
+
+	@Test
+	void testCreate() {
+		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		car.setLeaseRate();
+
+		long id = service.create(car);
+		assertNotEquals(id, 0);
+	}
+	
+	@Test
+	void testCreateException() {
+		Car car = new Car(null, "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		car.setLeaseRate();
+
+		 Assertions.assertThrows(DataIntegrityViolationException.class,() -> {service.create(car);});
+	}
+	
+	@Test
+	void testUpdate() {
+		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		car.setLeaseRate();
+		long id = service.create(car);
+		Car carEdit = new Car("ModelUpdated", "", 0, 2, "", 100.00, 10, 60, 7, "", 0.9, 0);
+		carEdit.setLeaseRate();
+		carEdit.setId(id);
+		Car carUpdate = service.update(carEdit,id);
+		assertEquals(carEdit, carUpdate);
+	}
+	
+	@Test
+	void testUpdateException() {
+		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		car.setLeaseRate();
+		long id = service.create(car);
+		car.setId(100);
+		Car carUpdate = service.update(car,id);
+	}
+}

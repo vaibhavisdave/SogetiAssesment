@@ -1,0 +1,75 @@
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import io.swagger.annotations.ApiModelProperty;
+
+public class Car {
+
+	Make
+	o Model
+	o Version
+	o Number of doors
+	o CO2-emission
+	o Gross price
+	o Nett price
+	
+	Mileage - the amount of kilometers on annual base
+	o Duration - the number of months in the contract
+	o Interest rate with startdate
+	@Id
+	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Long id;
+	
+	@ApiModelProperty(example = "model name", dataType = "String", required = true,value = "Car's model name")
+	@Column(name = "model", nullable = false)
+	private String model;
+		
+	@ApiModelProperty(example = "make", dataType = "String", value = "Car's model name")
+	@Column(name = "make")
+	private String make;
+	
+	@ApiModelProperty(example = "1", dataType = "Integer", value = "Car's version")
+	@Column(name = "version")
+	private int version;
+	
+	@ApiModelProperty(example = "4", dataType = "Integer", value = "Nos. of doors car have.")
+	@Column(name = "noOfDoors")
+	private int noOfDoors;
+	
+	@ApiModelProperty(example = "CO2Emission", dataType = "String",value = "CO2 Emission by the Car")
+	@Column(name = "CO2Emission")
+	private String CO2Emission;
+	
+	@ApiModelProperty(example = "a@b.com", dataType = "String", required = true,value = "Car's model name")
+	@Column(name = "email", nullable = false)
+	private String email;
+	
+	@ApiModelProperty(example = "123456", dataType = "String", required = true,value = "Car's model name")
+	@Column(name = "phNumber", nullable = false)
+	private String phNumber;
+
+	public Customer(String name, String street, int houseNumber, String zipCode, String place, String email,
+			String phNumber) {
+		super();
+		this.name = name;
+		this.street = street;
+		this.houseNo = houseNumber;
+		this.zipCode = zipCode;
+		this.place = place;
+		this.email = email;
+		this.phNumber = phNumber;
+	}
+
+	public Customer() {
+		super();
+	}
+	
+	
+	
+
+}

@@ -1,0 +1,5 @@
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity;
+
+public class Car {
+
+}

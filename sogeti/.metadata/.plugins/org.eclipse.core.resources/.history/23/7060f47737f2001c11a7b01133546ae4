@@ -1,0 +1,13 @@
+package com.sogeti.asses.broker.SogetiAssesmentBroker;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SogetiAssesmentBrokerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SogetiAssesmentBrokerApplication.class, args);
+	}
+
+}

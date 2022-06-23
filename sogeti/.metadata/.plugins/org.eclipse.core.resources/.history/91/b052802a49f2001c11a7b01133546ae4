@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
+
+import lombok.Data;
+
+/**
+ * @author vighn
+ *
+ */
+@Data
+@Entity
+@Table(name = "LEASE")
+public class Lease {
+
+}

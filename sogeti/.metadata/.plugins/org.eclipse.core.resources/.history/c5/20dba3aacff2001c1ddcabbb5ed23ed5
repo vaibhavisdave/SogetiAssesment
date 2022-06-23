@@ -1,0 +1,21 @@
+spring.datasource.url = jdbc:h2:file:C:/data/sogeti/broker
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.datasource.initialization-mode=always
+# Enabling H2 Console
+spring.h2.console.enabled=true
+
+# Custom H2 Console URL
+spring.h2.console.path=/h2
+
+spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+
+spring.security.user.name=admin
+spring.security.user.password=admin
+
+eureka.client.serviceUrl.defaultZone  = http://localhost:8761/
+eureka.client.instance.preferIpAddress = true
+spring.application.name = BrokerService

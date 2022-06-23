@@ -1,0 +1,35 @@
+/**
+ * 
+ */
+package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.controller;
+
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.controller.LeaseCompanyController;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
+
+/**
+ * @author vighn
+ *
+ */
+@WebMvcTest(controllers = LeaseCompanyController.class)
+public class LeaseCompanyControllerTest {
+	@MockBean
+	private LeaseCompanyService service;
+	
+	@Autowired
+	MockMvc mvc;
+	
+	@Test
+	void testCreate() {
+		when(service.create(new Car())).thenReturn(1l);
+	}
+
+}
