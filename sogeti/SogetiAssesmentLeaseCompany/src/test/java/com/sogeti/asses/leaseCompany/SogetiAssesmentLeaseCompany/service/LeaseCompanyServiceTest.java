@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dto.CarDTO;
 import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
 
 /**
@@ -33,8 +33,7 @@ public class LeaseCompanyServiceTest {
 
 	@Test
 	void testCreate() {
-		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
-		car.setLeaseRate();
+		CarDTO car =getCarDTO();
 
 		long id = service.create(car);
 		assertNotEquals(id, 0);
@@ -42,40 +41,44 @@ public class LeaseCompanyServiceTest {
 	
 	@Test
 	void testCreateException() {
-		Car car = new Car(null, "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
-		car.setLeaseRate();
+		CarDTO car =getCarDTO();
+		car.setModel(null);
 
 		 Assertions.assertThrows(DataIntegrityViolationException.class,() -> {service.create(car);});
 	}
 	
 	@Test
 	void testUpdate() {
-		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
-		car.setLeaseRate();
-		long id = service.create(car);
-		Car carEdit = new Car("ModelUpdated", "", 0, 2, "", 100.00, 10, 60, 7, "", 0.9, 0);
-		carEdit.setLeaseRate();
-		carEdit.setId(id);
-		Car carUpdate = service.update(carEdit,id);
-		assertEquals(carEdit, carUpdate);
+		 Optional<CarDTO> carOptional = service.findById(1);
+		 carOptional.ifPresent( car ->{
+			 CarDTO carEdit = car;
+			carEdit.setMake("MakeUpdated");
+			carEdit.setStartDate("21-06-2022");
+			carEdit.setNoOfDoors(2);
+			carEdit.setVersion(2);
+			
+			CarDTO carUpdate = service.update(carEdit);
+			assertEquals(carEdit, carUpdate);
+		 });
+		
 	}
 	
 	@Test
 	void testUpdateException() {
-		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
-		car.setLeaseRate();
-		long id = service.create(car);
-		Car carUpdate = service.update(car,id+1);
+		CarDTO car =getCarDTO();
+		 service.create(car);
+		car.setId(10000L);
+		CarDTO carUpdate = service.update(car);
 		assertNull(carUpdate);
 	}
 	
 	@Test
 	void testFind() {
 
-		List<Car>cars =service.findAll();
+		List<CarDTO>cars =service.findAll();
 		assertNotNull(cars);
 		assertEquals(cars.size(),1);
-		Optional<Car> car = service.findById(1);
+		Optional<CarDTO> car = service.findById(1);
 		assertNotNull(car);
 		assertNotNull(car.get());
 		assertEquals(car.get().getId(), 1);
@@ -88,5 +91,21 @@ public class LeaseCompanyServiceTest {
 		service.deleteById(1L);
 		Assertions.assertThrows(NoSuchElementException.class,() -> {service.findById(1L).get();});
 		
+	}
+	
+	private CarDTO getCarDTO() {
+		return CarDTO.builder()
+		.co2Emission("co2Emission")
+		.duration(6)
+		.grossPrice(100.00)
+		.interestRate(0.8)
+		.make("make")
+		.mileage(50)
+		.model("model")
+		.nettPrice(1000)
+		.noOfDoors(4)
+		.startDate("21-06-2022")
+		.version(1)
+		.build();
 	}
 }

@@ -80,7 +80,7 @@ public class Car {
 	
 
 	public Car(String model, String make, int version, int noOfDoors, String co2Emission, double grossPrice,
-			double nettPrice, double mileage, int duration, String startDate, double interestRate, double leaseRate) {
+			double nettPrice, double mileage, int duration, String startDate, double interestRate) {
 		super();
 		this.model = model;
 		this.make = make;
@@ -93,7 +93,7 @@ public class Car {
 		this.duration = duration;
 		this.startDate = startDate;
 		this.interestRate = interestRate;
-		this.leaseRate = leaseRate;
+		this.leaseRate = calculateLeaseRate();
 	}
 
 	
@@ -112,7 +112,6 @@ public class Car {
 
 
 	public double getLeaseRate() {
-		leaseRate = calculateLeaseRate();
 		return leaseRate;
 	}
 }

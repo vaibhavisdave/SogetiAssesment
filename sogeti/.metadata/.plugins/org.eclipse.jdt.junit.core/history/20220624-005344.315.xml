@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SogetiAssesmentBroker" project="SogetiAssesmentBroker" tests="11" started="10" failures="0" errors="1" ignored="0">
+  <testsuite name="com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest" time="0.08" displayname="BrokerControllerTest" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest]">
+    <testcase name="testFind" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest" time="0.056" displayname="testFind()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest]/[method:testFind()]"/>
+    <testcase name="testCreate" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest" time="0.009" displayname="testCreate()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest]/[method:testCreate()]"/>
+    <testcase name="testDelete" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest" time="0.006" displayname="testDelete()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest]/[method:testDelete()]"/>
+    <testcase name="testUpdate" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest" time="0.006" displayname="testUpdate()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.controller.BrokerControllerTest]/[method:testUpdate()]"/>
+  </testsuite>
+  <testsuite name="com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest" time="0.185" displayname="BrokerServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest]">
+    <testcase name="testUpdateException" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest" time="0.06" displayname="testUpdateException()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest]/[method:testUpdateException()]"/>
+    <testcase name="testFind" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest" time="0.088" displayname="testFind()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest]/[method:testFind()]"/>
+    <testcase name="testCreateException" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest" time="0.008" displayname="testCreateException()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest]/[method:testCreateException()]"/>
+    <testcase name="testCreate" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest" time="0.005" displayname="testCreate()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest]/[method:testCreate()]"/>
+    <testcase name="testDelete" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest" time="0.011" displayname="testDelete()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest]/[method:testDelete()]"/>
+    <testcase name="testUpdate" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest" time="0.01" displayname="testUpdate()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.service.BrokerServiceTest]/[method:testUpdate()]"/>
+  </testsuite>
+  <testsuite name="com.sogeti.asses.broker.SogetiAssesmentBroker.SogetiAssesmentBrokerApplicationTests" incomplete="true" displayname="SogetiAssesmentBrokerApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.SogetiAssesmentBrokerApplicationTests]">
+    <error>java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test&#13;
+	at org.springframework.util.Assert.state(Assert.java:76)&#13;
+	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.getOrFindConfigurationClasses(SpringBootTestContextBootstrapper.java:236)&#13;
+	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.processMergedContextConfiguration(SpringBootTestContextBootstrapper.java:152)&#13;
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildMergedContextConfiguration(AbstractTestContextBootstrapper.java:392)&#13;
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildDefaultMergedContextConfiguration(AbstractTestContextBootstrapper.java:309)&#13;
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildMergedContextConfiguration(AbstractTestContextBootstrapper.java:262)&#13;
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildTestContext(AbstractTestContextBootstrapper.java:107)&#13;
+	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.buildTestContext(SpringBootTestContextBootstrapper.java:102)&#13;
+	at org.springframework.test.context.TestContextManager.&lt;init&gt;(TestContextManager.java:137)&#13;
+	at org.springframework.test.context.TestContextManager.&lt;init&gt;(TestContextManager.java:122)&#13;
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore.lambda$getOrComputeIfAbsent$4(ExtensionValuesStore.java:86)&#13;
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore$MemoizingSupplier.computeValue(ExtensionValuesStore.java:223)&#13;
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore$MemoizingSupplier.get(ExtensionValuesStore.java:211)&#13;
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore$StoredValue.evaluate(ExtensionValuesStore.java:191)&#13;
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore$StoredValue.access$100(ExtensionValuesStore.java:171)&#13;
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore.getOrComputeIfAbsent(ExtensionValuesStore.java:89)&#13;
+	at org.junit.jupiter.engine.execution.ExtensionValuesStore.getOrComputeIfAbsent(ExtensionValuesStore.java:93)&#13;
+	at org.junit.jupiter.engine.execution.NamespaceAwareStore.getOrComputeIfAbsent(NamespaceAwareStore.java:61)&#13;
+	at org.springframework.test.context.junit.jupiter.SpringExtension.getTestContextManager(SpringExtension.java:294)&#13;
+	at org.springframework.test.context.junit.jupiter.SpringExtension.beforeAll(SpringExtension.java:113)&#13;
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeBeforeAllCallbacks$10(ClassBasedTestDescriptor.java:381)&#13;
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)&#13;
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeBeforeAllCallbacks(ClassBasedTestDescriptor.java:381)&#13;
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:205)&#13;
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:80)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:148)&#13;
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)&#13;
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)&#13;
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)&#13;
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)&#13;
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)&#13;
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)&#13;
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)&#13;
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)&#13;
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)&#13;
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)&#13;
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)&#13;
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)&#13;
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)&#13;
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)&#13;
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)&#13;
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)&#13;
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:95)&#13;
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:91)&#13;
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:60)&#13;
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:98)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)&#13;
+&#13;
+</error>
+    <testcase name="contextLoads" classname="com.sogeti.asses.broker.SogetiAssesmentBroker.SogetiAssesmentBrokerApplicationTests" incomplete="true" displayname="contextLoads()" uniqueid="[engine:junit-jupiter]/[class:com.sogeti.asses.broker.SogetiAssesmentBroker.SogetiAssesmentBrokerApplicationTests]/[method:contextLoads()]"/>
+  </testsuite>
+</testrun>

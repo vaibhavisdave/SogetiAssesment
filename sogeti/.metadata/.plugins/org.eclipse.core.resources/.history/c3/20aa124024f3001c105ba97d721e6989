@@ -1,0 +1,19 @@
+package com.sogeti.asses.broker.sogetiAssesBroker.controller;
+
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiOperation;
+
+@RestController(value = "/cars")
+public class CarsController {
+
+	
+	@ApiOperation(value = "Fetches all Cars.", response = Map.class)
+	@GetMapping(value = "/getCars")
+	public Map<String, Double> getCars() {
+		return service.getCars();
+	}
+}

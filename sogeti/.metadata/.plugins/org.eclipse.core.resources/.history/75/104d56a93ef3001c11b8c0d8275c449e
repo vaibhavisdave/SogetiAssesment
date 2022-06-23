@@ -1,0 +1,116 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.SogetiAssesmentBroker.controller;
+
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sogeti.asses.broker.sogetiAssesBroker.dto.CustomerDTO;
+import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
+import com.sogeti.asses.broker.sogetiAssesBroker.service.BrokerService;
+
+/**
+ * @author vighn
+ *
+ */
+@SpringBootTest(classes = {com.sogeti.asses.broker.sogetiAssesBroker.SogetiAssesmentBrokerApplication.class})
+@AutoConfigureMockMvc
+public class BrokerControllerTest {
+	@MockBean
+	BrokerService service;
+	
+	@Autowired
+	MockMvc mvc;
+	
+	@Autowired
+	  private ObjectMapper objectMapper;
+	
+	@Test
+	void testCreate() throws JsonProcessingException, Exception  {
+		CustomerDTO cust = getCustomerCTO();
+		when(service.create(cust)).thenReturn(1l);
+		mvc.perform(post("/customer").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(cust)))
+		.andExpect(result ->{
+			MockMvcResultMatchers.status().is(200);
+			MockMvcResultMatchers.jsonPath("$.data").value(1);
+		} );
+	}
+	
+	@Test
+	void testUpdate() throws JsonProcessingException, Exception  {
+		CustomerDTO cust = getCustomerCTO();
+		cust.setId(1l);
+		when(service.update(cust)).thenReturn(cust);
+		mvc.perform(put("/customer").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(cust)))
+				.andExpect(result ->{
+					MockMvcResultMatchers.status().is(200);
+					MockMvcResultMatchers.jsonPath("$.data").value(cust);
+				} );
+	}
+	
+	@Test
+	void testFind() throws JsonProcessingException, Exception  {
+		CustomerDTO cust = getCustomerCTO();
+		cust.setId(1l);
+		when(service.findAll()).thenReturn(List.of(cust));
+		mvc.perform(get("/customer").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(result ->{
+					MockMvcResultMatchers.status().is(200);
+					MockMvcResultMatchers.jsonPath("$.data").isNotEmpty();
+					MockMvcResultMatchers.model().size(1);
+				} );
+		when(service.findById(1l)).thenReturn(Optional.of(cust));
+		mvc.perform(get("/customer/1").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(result ->{
+					MockMvcResultMatchers.status().is(200);
+					MockMvcResultMatchers.jsonPath("$.data").isNotEmpty();
+					MockMvcResultMatchers.jsonPath("$.data").value(cust);
+				} );
+	}
+
+	@Test
+	void testDelete() throws JsonProcessingException, Exception  {
+		doNothing().when(service).deleteById(1);
+		mvc.perform(delete("/customer/1").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(result ->{
+					MockMvcResultMatchers.status().is(200);
+					MockMvcResultMatchers.jsonPath("$.data").value("Customer deleted successfully");
+				} );
+	}
+
+	
+
+	private CustomerDTO getCustomerCTO() {
+		return CustomerDTO.builder()
+		.email("a@b.com")
+		.houseNo(24)
+		.name("name")
+		.phNumber("123456")
+		.place("place")
+		.street("street")
+		.zipCode("11236")
+		.build();
+
+	}
+}

@@ -4,7 +4,6 @@
 package com.sogeti.asses.broker.sogetiAssesBroker.controller;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sogeti.asses.broker.sogetiAssesBroker.dto.CustomerDTO;
 import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
 import com.sogeti.asses.broker.sogetiAssesBroker.service.BrokerService;
 
@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiResponse;
  * @author vighn
  *
  */
-@RestController
+@RestController(value = "/customers")
 public class BrokerController {
 
 	@Autowired
@@ -34,40 +34,34 @@ public class BrokerController {
 	
 	@ApiOperation(value = "Adds Customer.")
 	@ApiResponse(code = 200, message = "Customer added successfully")
-	@PostMapping(value = "/add")
-	public long add(@RequestBody Customer customer) {
+	@PostMapping
+	public long add(@RequestBody CustomerDTO customer) {
 		return service.create(customer);
 	}
 	
 	@ApiOperation(value = "Updates Customer.")
 	@ApiResponse(code = 200, message = "Customer updated successfully")
-	@PutMapping(value = "/update/{id}")
-	public Customer update(@RequestBody Customer customer,  @PathVariable long id) {
-		return service.update(customer, id);
+	@PutMapping
+	public CustomerDTO update(@RequestBody CustomerDTO customer) {
+		return service.update(customer);
 	}
 	
 	@ApiOperation(value = "Fetches all Customers.", response = List.class)
-	@GetMapping(value = "/find")
-	public List<Customer> find() {
+	@GetMapping
+	public List<CustomerDTO> find() {
 		return service.findAll();
 	}
 	@ApiOperation(value = "Fetches Customer by Id.", response = Customer.class)
-	@GetMapping(value = "/{id}")
-	public Optional<Customer> find(@PathVariable long id) {
+	@GetMapping(value = "/id/{id}")
+	public Optional<CustomerDTO> findById(@PathVariable long id) {
 		return service.findById(id);
 	}
 
 	@ApiOperation(value = "Deletes Customer.")
 	@ApiResponse(code = 200, message = "Customer deleted successfully")
-	@DeleteMapping(value = "/delete/{id}")
+	@DeleteMapping(value = "/{id}")
 	public String delete(@PathVariable long id) {
 		service.deleteById(id);
 		return "Customer deleted successfully";
-	}
-	
-	@ApiOperation(value = "Fetches all Cars.", response = Map.class)
-	@GetMapping(value = "/getCars")
-	public Map<String, Double> getCars() {
-		return service.getCars();
 	}
 }

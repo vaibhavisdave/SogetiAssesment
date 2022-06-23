@@ -7,19 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
-import com.google.common.base.Functions;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
 import com.sogeti.asses.broker.sogetiAssesBroker.dao.BrokerRespository;
+import com.sogeti.asses.broker.sogetiAssesBroker.dto.CustomerDTO;
 import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
 
 /**
@@ -38,13 +35,22 @@ public class BrokerService {
 	@Autowired
 	private EurekaClient eurekaClient;
 
-	public long create(Customer customer) {
-		return demoRepository.save(customer).getId();
+	public long create(CustomerDTO customerDTO) {
+	
+		Customer cutomer = new Customer(customerDTO.getName(),
+				customerDTO.getStreet(),
+				customerDTO.getHouseNo(),
+				customerDTO.getZipCode(),
+				customerDTO.getPlace(),
+				customerDTO.getEmail(),
+				customerDTO.getPhNumber()
+				);
+		return demoRepository.save(cutomer).getId();
 	}
 
-	public Customer update(Customer customer, @PathVariable long id) {
+	public CustomerDTO update(CustomerDTO customer) {
 		Customer oldCust = null;
-		Optional<Customer> oldCustOpt = demoRepository.findById(id);
+		Optional<Customer> oldCustOpt = demoRepository.findById(customer.getId());
 		if (oldCustOpt.isPresent()) {
 			oldCust = oldCustOpt.get();
 			oldCust.setEmail(customer.getEmail());
@@ -55,17 +61,54 @@ public class BrokerService {
 			oldCust.setStreet(customer.getStreet());
 			oldCust.setZipCode(customer.getZipCode());
 			oldCust = demoRepository.save(oldCust);
+
+			return CustomerDTO.builder()
+					.email(customer.getEmail())
+					.houseNo(customer.getHouseNo())
+					.name(customer.getName())
+					.phNumber(customer.getPhNumber())
+					.place(customer.getPlace())
+					.street(customer.getStreet())
+					.zipCode(customer.getZipCode())
+					.id(customer.getId())
+					.build();
+
 		}
-		return oldCust;
+		return null;
 	}
 
-	public List<Customer> findAll() {
-		return demoRepository.findAll();
+	public List<CustomerDTO> findAll() {
+		return demoRepository.findAll().stream().map(m -> {
+			return CustomerDTO.builder()
+					.id(m.getId())
+					.name(m.getName())
+					.street(m.getStreet())
+					.houseNo(m.getHouseNo())
+					.place(m.getPlace())
+					.phNumber(m.getPhNumber())
+					.zipCode(m.getZipCode())
+					.email(m.getEmail())
+					.build();
+		}).toList();
 	}
 
-	public Optional<Customer> findById(long id) {
-		// TODO Auto-generated method stub
-		return demoRepository.findById(id);
+	public Optional<CustomerDTO> findById(long id) {
+		Optional<Customer> custOpt = demoRepository.findById(id);
+		if(custOpt.isPresent()) {
+			Customer cust = custOpt.get();
+			return Optional.of(CustomerDTO.builder()
+					.id(cust.getId())
+					.name(cust.getName())
+					.street(cust.getStreet())
+					.houseNo(cust.getHouseNo())
+					.place(cust.getPlace())
+					.phNumber(cust.getPhNumber())
+					.zipCode(cust.getZipCode())
+					.email(cust.getEmail())
+					.build());
+		}
+		return Optional.empty();
+		
 	}
 
 	public void deleteById(long id) {
@@ -78,7 +121,7 @@ public class BrokerService {
 		Map<String, Double> map = new HashMap<String, Double>();
 		Application app = eurekaClient.getApplication("LEASECOMPANYSERVICE");
 		InstanceInfo instance = app.getInstances().get(0);
-		String url = "http://" + instance.getIPAddr() + ":" + instance.getPort() + "/find";
+		String url = "http://" + instance.getIPAddr() + ":" + instance.getPort() + "/";
 		System.out.println(url);
 		List cars = restTemplate.getForObject(url, List.class);
 		cars.stream().forEach(c ->{

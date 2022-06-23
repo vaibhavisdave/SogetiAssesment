@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.sogeti.asses.broker.sogetiAssesBroker.dto;
+
+/**
+ * @author vighn
+ *
+ */
+public class CustomerDTO {
+
+}

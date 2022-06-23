@@ -1,0 +1,8 @@
+package com.sogeti.asses.broker.sogetiAssesBroker.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController(value = "/cars")
+public class CarsController {
+
+}

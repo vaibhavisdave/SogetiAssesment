@@ -1,0 +1,5 @@
+package com.sogeti.asses.broker.sogetiAssesBroker.controller;
+
+public class CarsController {
+
+}

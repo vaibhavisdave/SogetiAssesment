@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
+import com.sogeti.asses.broker.sogetiAssesBroker.dto.CustomerDTO;
 import com.sogeti.asses.broker.sogetiAssesBroker.service.BrokerService;
 
 /**
@@ -33,44 +33,48 @@ public class BrokerServiceTest {
 
 	@Test
 	void testCreate() {
-		Customer cust = new Customer("name", "street", 23, "123654", "place", "a@b.com", "123456");
-
-		long id = service.create(cust);
+		long id = service.create(getCustomerCTO());
+		
+		
 		assertNotEquals(id, 0);
 	}
 	
 	@Test
 	void testCreateException() {
-		Customer cust = new Customer(null, "street", 23, "123654", "place", "a@b.com", "123456");
-
-		 Assertions.assertThrows(DataIntegrityViolationException.class,() -> {service.create(cust);});
+		CustomerDTO cust = getCustomerCTO();
+		cust.setName(null);
+		Assertions.assertThrows(DataIntegrityViolationException.class,() -> {service.create(cust);});
 	}
-	
+	;
 	@Test
 	void testUpdate() {
-		Customer cust = new Customer("name", "street", 23, "123654", "place", "a@b.com", "123456");
+		CustomerDTO cust = getCustomerCTO();
 		long id = service.create(cust);
-		Customer custEdit =new Customer("nameUpated", "street1", 21, "123654", "place1", "a@b.com", "123456");
+		CustomerDTO custEdit = cust;
+		custEdit.setEmail("x@y.com");
+		custEdit.setName("updated");
+		custEdit.setPlace("updatedPlace");
 		custEdit.setId(id);
-		Customer custUpdate = service.update(custEdit,id);
+		CustomerDTO custUpdate = service.update(custEdit);
 		assertEquals(custEdit, custUpdate);
 	}
 	
 	@Test
 	void testUpdateException() {
-		Customer cust = new Customer("name", "street", 23, "123654", "place", "a@b.com", "123456");
+		CustomerDTO cust = getCustomerCTO();
 		long id = service.create(cust);
-		Customer custUpdate = service.update(cust,id+1);
+		cust.setId(id+2);
+		CustomerDTO custUpdate = service.update(cust);
 		assertNull(custUpdate);
 	}
 	
 	@Test
 	void testFind() {
 
-		List<Customer>cars =service.findAll();
+		List<CustomerDTO>cars =service.findAll();
 		assertNotNull(cars);
 		assertEquals(cars.size(),1);
-		Optional<Customer> car = service.findById(1);
+		Optional<CustomerDTO> car = service.findById(1);
 		assertNotNull(car);
 		assertNotNull(car.get());
 		assertEquals(car.get().getId(), 1);
@@ -83,5 +87,19 @@ public class BrokerServiceTest {
 		service.deleteById(1L);
 		Assertions.assertThrows(NoSuchElementException.class,() -> {service.findById(1L).get();});
 		
+	}
+	
+
+	private CustomerDTO getCustomerCTO() {
+		return CustomerDTO.builder()
+		.email("a@b.com")
+		.houseNo(24)
+		.name("name")
+		.phNumber("123456")
+		.place("place")
+		.street("street")
+		.zipCode("11236")
+		.build();
+
 	}
 }

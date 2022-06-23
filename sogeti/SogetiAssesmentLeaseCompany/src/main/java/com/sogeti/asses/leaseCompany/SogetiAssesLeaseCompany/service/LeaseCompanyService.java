@@ -12,7 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
-import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.controller.dao.LeaseComapnyDao;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dao.LeaseComapnyDao;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dto.CarDTO;
 import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
 
 @Service
@@ -27,13 +28,17 @@ public class LeaseCompanyService {
 	@Autowired
 	private EurekaClient eurekaClient;
 
-	public long create(Car car) {
+	public long create(CarDTO carDTO) {
+		Car car = new Car(carDTO.getModel(), carDTO.getMake(), carDTO.getVersion(), carDTO.getNoOfDoors(),
+				carDTO.getCo2Emission(), carDTO.getGrossPrice(), carDTO.getNettPrice(), carDTO.getMileage(),
+				carDTO.getDuration(), carDTO.getStartDate(), carDTO.getInterestRate());
+		car.setLeaseRate();
 		return comapnyDao.save(car).getId();
 	}
 
-	public Car update(Car car, long id) {
+	public CarDTO update(CarDTO car) {
 		Car oldCar =null;
-		Optional<Car> oldCustOpt = comapnyDao.findById(id);
+		Optional<Car> oldCustOpt = comapnyDao.findById(car.getId());
 		if(oldCustOpt.isPresent()) {
 			oldCar = oldCustOpt.get();
 			oldCar.setCo2Emission(car.getCo2Emission());
@@ -49,16 +54,69 @@ public class LeaseCompanyService {
 			oldCar.setLeaseRate();
 			oldCar.setStartDate(car.getStartDate());
 			oldCar = comapnyDao.save(oldCar);
+			
+			return CarDTO.builder()
+					.co2Emission(oldCar.getCo2Emission())
+					.duration(oldCar.getDuration())
+					.grossPrice(oldCar.getGrossPrice())
+					.id(oldCar.getId())
+					.interestRate(oldCar.getInterestRate())
+					.leaseRate(oldCar.getLeaseRate())
+					.make(oldCar.getMake())
+					.mileage(oldCar.getMileage())
+					.model(oldCar.getModel())
+					.nettPrice(oldCar.getNettPrice())
+					.noOfDoors(oldCar.getNoOfDoors())
+					.startDate(oldCar.getStartDate())
+					.version(oldCar.getVersion())
+					.build();
 		}
-		return oldCar;
+		return null;
 	}
 
-	public List<Car> findAll() {
-		return comapnyDao.findAll();
+	public List<CarDTO> findAll() {
+		return comapnyDao.findAll().stream().map(m ->{
+			return CarDTO.builder()
+					.co2Emission(m.getCo2Emission())
+					.duration(m.getDuration())
+					.grossPrice(m.getGrossPrice())
+					.id(m.getId())
+					.interestRate(m.getInterestRate())
+					.leaseRate(m.getLeaseRate())
+					.make(m.getMake())
+					.mileage(m.getMileage())
+					.model(m.getModel())
+					.nettPrice(m.getNettPrice())
+					.noOfDoors(m.getNoOfDoors())
+					.startDate(m.getStartDate())
+					.version(m.getVersion())
+					.build();
+		}).toList();
 	}
 
-	public Optional<Car> findById(long id) {
-		return comapnyDao.findById(id);
+	public Optional<CarDTO> findById(long id) {
+		Optional<Car> carOpt =comapnyDao.findById(id);
+		if(carOpt.isPresent()) {
+			Car car = carOpt.get();
+			CarDTO carDTO = CarDTO.builder()
+					.co2Emission(car.getCo2Emission())
+					.duration(car.getDuration())
+					.grossPrice(car.getGrossPrice())
+					.id(car.getId())
+					.interestRate(car.getInterestRate())
+					.leaseRate(car.getLeaseRate())
+					.make(car.getMake())
+					.mileage(car.getMileage())
+					.model(car.getModel())
+					.nettPrice(car.getNettPrice())
+					.noOfDoors(car.getNoOfDoors())
+					.startDate(car.getStartDate())
+					.version(car.getVersion())
+					.build();
+			return Optional.of(carDTO);
+		}
+		return Optional.empty();
+			
 	}
 
 	public void deleteById(long id) {
@@ -71,7 +129,7 @@ public class LeaseCompanyService {
 		Map<String, String> map = new HashMap<String, String>();
 		Application app = eurekaClient.getApplication("BROKERSERVICE");
 		InstanceInfo instance = app.getInstances().get(0);
-		String url = "http://" + instance.getIPAddr() + ":" + instance.getPort() + "/find";
+		String url = "http://" + instance.getIPAddr() + ":" + instance.getPort() + "/";
 		System.out.println(url);
 		List cars = restTemplate.getForObject(url, List.class);
 		cars.stream().forEach(c ->{

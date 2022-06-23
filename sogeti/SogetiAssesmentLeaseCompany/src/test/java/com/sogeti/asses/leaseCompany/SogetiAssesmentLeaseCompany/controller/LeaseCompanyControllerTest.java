@@ -3,12 +3,13 @@
  */
 package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dto.CarDTO;
 import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
 
 /**
@@ -44,10 +45,9 @@ public class LeaseCompanyControllerTest {
 	
 	@Test
 	void testCreate() throws JsonProcessingException, Exception  {
-		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
-		car.setLeaseRate();
+		CarDTO car = getCarDTO();
 		when(service.create(car)).thenReturn(1l);
-		mvc.perform(post("/add").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/cars").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(car)))
 		.andExpect(result ->{
 			MockMvcResultMatchers.status().is(200);
@@ -57,11 +57,10 @@ public class LeaseCompanyControllerTest {
 	
 	@Test
 	void testUpdate() throws JsonProcessingException, Exception  {
-		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		CarDTO car = getCarDTO();
 		car.setId(1l);
-		car.setLeaseRate();
-		when(service.update(car,1)).thenReturn(car);
-		mvc.perform(post("/update/1").contentType(MediaType.APPLICATION_JSON)
+		when(service.update(car)).thenReturn(car);
+		mvc.perform(put("/cars/1").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(car)))
 				.andExpect(result ->{
 					MockMvcResultMatchers.status().is(200);
@@ -71,18 +70,17 @@ public class LeaseCompanyControllerTest {
 	
 	@Test
 	void testFind() throws JsonProcessingException, Exception  {
-		Car car = new Car("Model", "", 0, 4, "", 100.00, 1000, 50, 6, "", 0.8, 0);
+		CarDTO car = getCarDTO();
 		car.setId(1l);
-		car.setLeaseRate();
 		when(service.findAll()).thenReturn(List.of(car));
-		mvc.perform(post("/find").contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/cars").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(result ->{
 					MockMvcResultMatchers.status().is(200);
 					MockMvcResultMatchers.jsonPath("$.data").isNotEmpty();
 					MockMvcResultMatchers.model().size(1);
 				} );
 		when(service.findById(1l)).thenReturn(Optional.of(car));
-		mvc.perform(post("/find/1").contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/cars/1").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(result ->{
 					MockMvcResultMatchers.status().is(200);
 					MockMvcResultMatchers.jsonPath("$.data").isNotEmpty();
@@ -93,13 +91,27 @@ public class LeaseCompanyControllerTest {
 	@Test
 	void testDelete() throws JsonProcessingException, Exception  {
 		doNothing().when(service).deleteById(1);
-		mvc.perform(post("/delete/1").contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(delete("/cars/1").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(result ->{
 					MockMvcResultMatchers.status().is(200);
 					MockMvcResultMatchers.jsonPath("$.data").value("Car deleted successfully");
 				} );
 	}
 
-	
+	private CarDTO getCarDTO() {
+		return CarDTO.builder()
+		.co2Emission("co2Emission")
+		.duration(6)
+		.grossPrice(100.00)
+		.interestRate(0.8)
+		.make("make")
+		.mileage(50)
+		.model("model")
+		.nettPrice(1000)
+		.noOfDoors(4)
+		.startDate("21-06-2022")
+		.version(1)
+		.build();
+	}
 
 }

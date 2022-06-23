@@ -5,3 +5,4 @@
 1655986264610	Rename package 'sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany'
 1655986274424	Delete element
 1655990529090	Rename type 'LeaseCompanyController'
+1656019428514	Rename package 'com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.controller.dao'
