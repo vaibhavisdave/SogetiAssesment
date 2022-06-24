@@ -28,6 +28,11 @@ public class LeaseCompanyService {
 	@Autowired
 	private EurekaClient eurekaClient;
 
+	/**
+	 * creates car
+	 * @param carDTO
+	 * @return long id
+	 */
 	public long create(CarDTO carDTO) {
 		Car car = new Car(carDTO.getModel(), carDTO.getMake(), carDTO.getVersion(), carDTO.getNoOfDoors(),
 				carDTO.getCo2Emission(), carDTO.getGrossPrice(), carDTO.getNettPrice(), carDTO.getMileage(),
@@ -36,6 +41,11 @@ public class LeaseCompanyService {
 		return comapnyDao.save(car).getId();
 	}
 
+	/**
+	 * updates car
+	 * @param car CarDTO
+	 * @return CarDTO
+	 */
 	public CarDTO update(CarDTO car) {
 		Car oldCar =null;
 		Optional<Car> oldCustOpt = comapnyDao.findById(car.getId());
@@ -73,7 +83,10 @@ public class LeaseCompanyService {
 		}
 		return null;
 	}
-
+	/**
+	 * fetches cars
+	 * @return List<CarDTO>
+	 */
 	public List<CarDTO> findAll() {
 		return comapnyDao.findAll().stream().map(m ->{
 			return CarDTO.builder()
@@ -94,6 +107,11 @@ public class LeaseCompanyService {
 		}).toList();
 	}
 
+	/**
+	 * fetches car by Id
+	 * @param id long
+	 * @return Optional<CarDTO>
+	 */
 	public Optional<CarDTO> findById(long id) {
 		Optional<Car> carOpt =comapnyDao.findById(id);
 		if(carOpt.isPresent()) {
@@ -123,7 +141,10 @@ public class LeaseCompanyService {
 		comapnyDao.deleteById(id);
 	}
 
-
+/**
+ * Fetches customers from BROKERSERVICE
+ * @return Map<String, String>
+ */
 	@SuppressWarnings("unchecked")
 	public Map<String, String> getCustomers() {
 		Map<String, String> map = new HashMap<String, String>();

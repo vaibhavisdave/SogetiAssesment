@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
  * @author vighn
- *
+ * global customer exception Handler
  */
 @ControllerAdvice
 public class CustomerExceptionHandler {

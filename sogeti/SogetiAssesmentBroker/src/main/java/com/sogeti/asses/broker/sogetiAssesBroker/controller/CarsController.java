@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sogeti.asses.broker.sogetiAssesBroker.service.BrokerService;
 
 import io.swagger.annotations.ApiOperation;
-
+/**
+ * Rest API to communicate LEASECOMPANYSERVICE
+ * @author vighn
+ *
+ */
 @RestController
 @RequestMapping("/cars")
 public class CarsController {

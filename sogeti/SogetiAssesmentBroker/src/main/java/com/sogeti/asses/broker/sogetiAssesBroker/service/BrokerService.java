@@ -20,6 +20,7 @@ import com.sogeti.asses.broker.sogetiAssesBroker.dto.CustomerDTO;
 import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
 
 /**
+ * service to perform CURD for customer
  * @author vighn
  *
  */
@@ -35,6 +36,11 @@ public class BrokerService {
 	@Autowired
 	private EurekaClient eurekaClient;
 
+	/**
+	 * creates customer
+	 * @param customerDTO
+	 * @return long id
+	 */
 	public long create(CustomerDTO customerDTO) {
 	
 		Customer cutomer = new Customer(customerDTO.getName(),
@@ -48,6 +54,11 @@ public class BrokerService {
 		return demoRepository.save(cutomer).getId();
 	}
 
+	/**
+	 * updates customer
+	 * @param customer CustomerDTO
+	 * @return CustomerDTO
+	 */
 	public CustomerDTO update(CustomerDTO customer) {
 		Customer oldCust = null;
 		Optional<Customer> oldCustOpt = demoRepository.findById(customer.getId());
@@ -77,6 +88,10 @@ public class BrokerService {
 		return null;
 	}
 
+	/**
+	 * fetches customer by id
+	 * @return List<CustomerDTO>
+	 */
 	public List<CustomerDTO> findAll() {
 		return demoRepository.findAll().stream().map(m -> {
 			return CustomerDTO.builder()
@@ -92,6 +107,11 @@ public class BrokerService {
 		}).toList();
 	}
 
+	/**
+	 * fetches customer by id
+	 * @param id long
+	 * @return Optional<CustomerDTO>
+	 */
 	public Optional<CustomerDTO> findById(long id) {
 		Optional<Customer> custOpt = demoRepository.findById(id);
 		if(custOpt.isPresent()) {
@@ -116,6 +136,10 @@ public class BrokerService {
 
 	}
 
+	/**
+	 * Calls LEASECOMPANYSERVICE to fetch cars data
+	 * @return Map<String, Double>
+	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Double> getCars() {
 		Map<String, Double> map = new HashMap<String, Double>();

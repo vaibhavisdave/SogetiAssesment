@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
  * @author vighn
- *
+ *Global exception handler for lease company
  */
 @ControllerAdvice
 public class LeaseCompanyExceptionHandler {

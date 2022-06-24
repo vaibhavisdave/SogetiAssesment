@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * @author vighn
- *
+ *Rest APIS to communicate to BROKERSERVICE
  */
 @RestController
 @RequestMapping("/customers")
