@@ -121,7 +121,7 @@ public class BrokerService {
 		Map<String, Double> map = new HashMap<String, Double>();
 		Application app = eurekaClient.getApplication("LEASECOMPANYSERVICE");
 		InstanceInfo instance = app.getInstances().get(0);
-		String url = "http://" + instance.getIPAddr() + ":" + instance.getPort() + "/";
+		String url = "http://" + instance.getIPAddr() + ":" + instance.getPort() + "/cars";
 		System.out.println(url);
 		List cars = restTemplate.getForObject(url, List.class);
 		cars.stream().forEach(c ->{

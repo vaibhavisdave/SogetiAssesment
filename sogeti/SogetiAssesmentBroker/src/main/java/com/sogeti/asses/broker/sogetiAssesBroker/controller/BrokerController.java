@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sogeti.asses.broker.sogetiAssesBroker.dto.CustomerDTO;
@@ -26,7 +27,8 @@ import io.swagger.annotations.ApiResponse;
  * @author vighn
  *
  */
-@RestController(value = "/customers")
+@RestController
+@RequestMapping("/customers")
 public class BrokerController {
 
 	@Autowired
@@ -52,7 +54,7 @@ public class BrokerController {
 		return service.findAll();
 	}
 	@ApiOperation(value = "Fetches Customer by Id.", response = Customer.class)
-	@GetMapping(value = "/id/{id}")
+	@GetMapping(value = "/{id}")
 	public Optional<CustomerDTO> findById(@PathVariable long id) {
 		return service.findById(id);
 	}

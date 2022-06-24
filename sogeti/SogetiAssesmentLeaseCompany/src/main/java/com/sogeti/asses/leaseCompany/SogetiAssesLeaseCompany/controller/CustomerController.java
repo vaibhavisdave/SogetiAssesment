@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
@@ -17,7 +18,8 @@ import io.swagger.annotations.ApiOperation;
  * @author vighn
  *
  */
-@RestController(value = "/cutomers")
+@RestController
+@RequestMapping("/customers")
 public class CustomerController {
 	
 	@Autowired
