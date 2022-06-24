@@ -19,7 +19,7 @@ public class CarsController {
 	BrokerService service;
 	
 	@ApiOperation(value = "Fetches all Cars.", response = Map.class)
-	@GetMapping(value = "/data")
+	@GetMapping
 	public Map<String, Double> getCars() {
 		return service.getCars();
 	}

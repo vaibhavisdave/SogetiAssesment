@@ -3,6 +3,7 @@
  */
 package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -18,9 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,8 +51,7 @@ public class LeaseCompanyControllerTest {
 		mvc.perform(post("/cars").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(car)))
 		.andExpect(result ->{
-			MockMvcResultMatchers.status().is(200);
-			MockMvcResultMatchers.jsonPath("$.data").value(1);
+			assertEquals(result.getResponse().getStatus(), 200);
 		} );
 	}
 	
@@ -60,11 +60,19 @@ public class LeaseCompanyControllerTest {
 		CarDTO car = getCarDTO();
 		car.setId(1l);
 		when(service.update(car)).thenReturn(car);
-		mvc.perform(put("/cars/1").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(put("/cars").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(car)))
 				.andExpect(result ->{
-					MockMvcResultMatchers.status().is(200);
-					MockMvcResultMatchers.jsonPath("$.data").value(car);
+					assertEquals(result.getResponse().getStatus(), 200);
+				} );
+		
+		when(service.update(car)).thenThrow(new DataIntegrityViolationException("junit Test"));
+		mvc.perform(put("/cars").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(car)))
+				.andExpect(result ->{
+					assertEquals(result.getResponse().getStatus(), 409);
+					assertEquals(result.getResolvedException().getClass(), DataIntegrityViolationException.class);
+					assertEquals(result.getResolvedException().getMessage(), "junit Test");
 				} );
 	}
 	
@@ -75,16 +83,12 @@ public class LeaseCompanyControllerTest {
 		when(service.findAll()).thenReturn(List.of(car));
 		mvc.perform(get("/cars").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(result ->{
-					MockMvcResultMatchers.status().is(200);
-					MockMvcResultMatchers.jsonPath("$.data").isNotEmpty();
-					MockMvcResultMatchers.model().size(1);
+					assertEquals(result.getResponse().getStatus(), 200);
 				} );
 		when(service.findById(1l)).thenReturn(Optional.of(car));
 		mvc.perform(get("/cars/1").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(result ->{
-					MockMvcResultMatchers.status().is(200);
-					MockMvcResultMatchers.jsonPath("$.data").isNotEmpty();
-					MockMvcResultMatchers.jsonPath("$.data").value(car);;
+					assertEquals(result.getResponse().getStatus(), 200);
 				} );
 	}
 
@@ -93,8 +97,7 @@ public class LeaseCompanyControllerTest {
 		doNothing().when(service).deleteById(1);
 		mvc.perform(delete("/cars/1").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(result ->{
-					MockMvcResultMatchers.status().is(200);
-					MockMvcResultMatchers.jsonPath("$.data").value("Car deleted successfully");
+					assertEquals(result.getResponse().getStatus(), 200);
 				} );
 	}
 

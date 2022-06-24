@@ -26,7 +26,7 @@ public class CustomerController {
 	LeaseCompanyService service;
 
 	@ApiOperation(value = "Fetches all Customers.", response = Map.class)
-	@GetMapping(value = "/names")
+	@GetMapping
 	public Map<String,String> getCustomers() {
 		return service.getCustomers();
 	}
