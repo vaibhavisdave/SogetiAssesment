@@ -1,14 +1,14 @@
-package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany;
+package com.sogeti.asses.leasecompany.sogetiassesmentleasecompany;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
-@SpringBootTest(classes = {com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.SogetiAssesmentLeaseCompanyApplication.class})
+@SpringBootTest(classes = {com.sogeti.asses.leasecompany.sogetiassesleasecompany
+                           .SogetiAssesmentLeaseCompanyApplication.class })
 class SogetiAssesmentLeaseCompanyApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+  @Test
+  void contextLoads() {
+  }
 
 }

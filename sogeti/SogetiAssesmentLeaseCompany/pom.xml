@@ -7,7 +7,7 @@
 		<version>2.7.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.sogeti.asses.leaseCompany</groupId>
+	<groupId>com.sogeti.asses.leasecompany</groupId>
 	<artifactId>SogetiAssesmentLeaseCompany</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SogetiAssesmentLeaseCompany</name>
