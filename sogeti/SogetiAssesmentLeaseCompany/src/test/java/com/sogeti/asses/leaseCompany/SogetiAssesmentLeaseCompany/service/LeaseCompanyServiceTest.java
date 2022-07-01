@@ -23,6 +23,7 @@ import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompan
  * @author vighn
  *
  */
+
 @SpringBootTest(classes = {com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany
                            .SogetiAssesmentLeaseCompanyApplication.class })
 public class LeaseCompanyServiceTest {

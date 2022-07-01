@@ -1,14 +1,12 @@
-/**
- * 
- */
-package com.sogeti.asses.broker.sogetiAssesBroker.dao;
+package com.sogeti.asses.broker.sogetiassesmentbroker.dao;
 
+import com.sogeti.asses.broker.sogetiassesmentbroker.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.sogeti.asses.broker.sogetiAssesBroker.entity.Customer;
-
 /**
+ * Repository for Customer.
+ *
  * @author vighn
  *
  */
