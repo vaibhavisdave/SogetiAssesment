@@ -1,4 +1,4 @@
-package com.sogeti.asses.leasecompany.sogetiassesmentleasecompany.controller;
+package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
@@ -8,12 +8,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.dto.CarDto;
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.service.LeaseCompanyService;
 import java.util.List;
 import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,6 +20,11 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dto.CarDto;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
+
 
 
 /**
@@ -31,7 +33,7 @@ import org.springframework.test.web.servlet.MockMvc;
  * @author vighn
  *
  */
-@SpringBootTest(classes = {com.sogeti.asses.leasecompany.sogetiassesleasecompany
+@SpringBootTest(classes = {com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany
                            .SogetiAssesmentLeaseCompanyApplication.class})
 @AutoConfigureMockMvc
 public class LeaseCompanyControllerTest {

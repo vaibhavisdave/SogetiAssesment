@@ -1,4 +1,4 @@
-package com.sogeti.asses.leasecompany.sogetiassesleasecompany;
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

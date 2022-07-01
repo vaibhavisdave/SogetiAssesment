@@ -1,4 +1,4 @@
-package com.sogeti.asses.leasecompany.sogetiassesleasecompany.dto;
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiModelProperty.AccessMode;

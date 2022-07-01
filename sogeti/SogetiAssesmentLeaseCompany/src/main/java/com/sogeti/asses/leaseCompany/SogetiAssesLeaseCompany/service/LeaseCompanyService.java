@@ -1,18 +1,20 @@
-package com.sogeti.asses.leasecompany.sogetiassesleasecompany.service;
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service;
 
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
-import com.netflix.discovery.shared.Application;
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.dao.LeaseComapnyDao;
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.dto.CarDto;
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.entity.Car;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dao.LeaseComapnyDao;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dto.CarDto;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
 
 /**
  * service to perform CURD operation on cars.

@@ -1,4 +1,4 @@
-package com.sogeti.asses.leasecompany.sogetiassesleasecompany.configuration;
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.configuration;
 
 import java.util.ArrayList;
 import java.util.Collection;

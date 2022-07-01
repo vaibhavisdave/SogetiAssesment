@@ -1,4 +1,4 @@
-package com.sogeti.asses.leasecompany.sogetiassesleasecompany.entity;
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Column;

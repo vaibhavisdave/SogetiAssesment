@@ -1,12 +1,15 @@
-package com.sogeti.asses.leasecompany.sogetiassesleasecompany.controller;
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.controller;
 
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.service.LeaseCompanyService;
-import io.swagger.annotations.ApiOperation;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
+
+import io.swagger.annotations.ApiOperation;
 
 
 

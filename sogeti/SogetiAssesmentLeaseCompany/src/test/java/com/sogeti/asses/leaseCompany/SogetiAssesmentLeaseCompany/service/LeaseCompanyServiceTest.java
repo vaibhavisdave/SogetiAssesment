@@ -1,29 +1,29 @@
-package com.sogeti.asses.leasecompany.sogetiassesmentleasecompany.service;
+package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.dto.CarDto;
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.service.LeaseCompanyService;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
-
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dto.CarDto;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
 /**
  * Class to test LeaseCompanyService.
  *
  * @author vighn
  *
  */
-@SpringBootTest(classes = {com.sogeti.asses.leasecompany.sogetiassesleasecompany
+@SpringBootTest(classes = {com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany
                            .SogetiAssesmentLeaseCompanyApplication.class })
 public class LeaseCompanyServiceTest {
 

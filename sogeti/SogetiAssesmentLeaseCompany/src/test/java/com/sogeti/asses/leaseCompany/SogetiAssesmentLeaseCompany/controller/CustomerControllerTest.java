@@ -1,13 +1,12 @@
-package com.sogeti.asses.leasecompany.sogetiassesmentleasecompany.controller;
+package com.sogeti.asses.leaseCompany.SogetiAssesmentLeaseCompany.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.service.LeaseCompanyService;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,13 +15,16 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.service.LeaseCompanyService;
+
 /**
  * Class to test CustomerController.
  *
  * @author vighn
  *
  */
-@SpringBootTest(classes = {com.sogeti.asses.leasecompany.sogetiassesleasecompany
+@SpringBootTest(classes = {com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany
                            .SogetiAssesmentLeaseCompanyApplication.class})
 @AutoConfigureMockMvc
 public class CustomerControllerTest {

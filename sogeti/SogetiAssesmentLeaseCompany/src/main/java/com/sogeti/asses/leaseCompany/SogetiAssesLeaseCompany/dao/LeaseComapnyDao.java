@@ -1,8 +1,9 @@
-package com.sogeti.asses.leasecompany.sogetiassesleasecompany.dao;
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.dao;
 
-import com.sogeti.asses.leasecompany.sogetiassesleasecompany.entity.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.entity.Car;
 
 /**
  * Daa repository for Car.

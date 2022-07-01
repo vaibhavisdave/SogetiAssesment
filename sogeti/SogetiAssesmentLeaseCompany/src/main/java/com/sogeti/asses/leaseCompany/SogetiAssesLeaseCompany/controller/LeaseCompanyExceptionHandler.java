@@ -1,4 +1,4 @@
-package com.sogeti.asses.leasecompany.sogetiassesleasecompany.controller;
+package com.sogeti.asses.leaseCompany.SogetiAssesLeaseCompany.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
